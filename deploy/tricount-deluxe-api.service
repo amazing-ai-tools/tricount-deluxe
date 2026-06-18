@@ -1,0 +1,20 @@
+[Unit]
+Description=Tricount Deluxe API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/ubuntu/.openclaw/workspace/tricount-deluxe
+ExecStart=/usr/bin/node /home/ubuntu/.openclaw/workspace/tricount-deluxe/server/index.mjs
+Restart=always
+RestartSec=3
+User=ubuntu
+Group=ubuntu
+Environment=NODE_ENV=production
+Environment=PORT=8123
+Environment=TRICOUNT_DATA_FILE=/var/lib/tricount-deluxe/state.json
+Environment=TRICOUNT_ALLOWED_ORIGINS=https://tricount-deluxe.app.amazing-ai.tools,https://tricount-deluxe.pages.dev,http://localhost:5173
+
+[Install]
+WantedBy=multi-user.target
